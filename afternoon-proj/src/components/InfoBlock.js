@@ -3,9 +3,7 @@ import data from '../data'
 
 class InfoBlock extends Component {
 
-   
-
- render() {
+   render() {
     return (
       <div>
         <h1>{data[this.props.id -1].name.first} {data[this.props.id -1].name.last}</h1>

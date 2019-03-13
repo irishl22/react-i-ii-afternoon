@@ -27,10 +27,6 @@ class Count extends Component {
         }
     }
 
-    handleClickDelete() {
-       this.setState({ count: null })
-    }
-
   
 render() {
     return (
@@ -44,7 +40,7 @@ render() {
         <div class="buttons">
             <button className="outer-button" onClick={() => this.handleClickPrev()}>&#60; Previous</button>
             <button className="mid-button">Edit</button>
-            <button className="mid-button" onClick={() => this.handleClickDelete()}>Delete</button>
+            <button className="mid-button">Delete</button>
             <button className="mid-button">New</button>
             <button className="outer-button" onClick={() => this.handleClickNext()}>Next &#62;</button>
         </div>    
