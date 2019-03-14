@@ -31,7 +31,7 @@ class Count extends Component {
     handleDelete() {
         data.splice(this.state.count - 1, 1)
         this.setState({ 
-            count: 1,
+            count: this.state.count,
             endCount: this.state.endCount - 1
          })
 
