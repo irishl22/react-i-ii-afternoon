@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import InfoBlock from './InfoBlock'
+import data from '../data';
 
 class Count extends Component {
     constructor() {
@@ -7,24 +8,33 @@ class Count extends Component {
 
         this.state = {
             count: 1,
-            delete: 0
+            endCount: 25
         }
     }
 
     handleClickNext() {
-        if(this.state.count < 25) {
+        if(this.state.count < this.state.endCount) {
             this.setState( {count: this.state.count + 1} );
-        } else if(this.state.count === 25){
+        } else if(this.state.count === this.state.endCount){
             this.setState( {count: 1});
         }
     }
 
     handleClickPrev() {
-        if(this.state.count <= 25 && this.state.count !== 1) {
+        if(this.state.count <= this.state.endCount && this.state.count !== 1) {
             this.setState( {count: this.state.count - 1} );
         } else if(this.state.count === 1){
-            this.setState( {count: 25});
+            this.setState( {count: this.state.endCount});
         }
+    }
+
+    handleDelete() {
+        data.splice(this.state.count - 1, 1)
+        this.setState({ 
+            count: 1,
+            endCount: this.state.endCount - 1
+         })
+
     }
 
   
@@ -32,7 +42,7 @@ render() {
     return (
       <div className='background'>
         <div className='box'>
-            <h2 className="counter">{this.state.count}/25</h2>
+            <h2 className="counter">{this.state.count}/{this.state.endCount}</h2>
             <div className="text">
                 <InfoBlock id={this.state.count}/>  
             </div>
@@ -40,7 +50,7 @@ render() {
         <div class="buttons">
             <button className="outer-button" onClick={() => this.handleClickPrev()}>&#60; Previous</button>
             <button className="mid-button">Edit</button>
-            <button className="mid-button">Delete</button>
+            <button className="mid-button" onClick={ () => this.handleDelete()}>Delete</button>
             <button className="mid-button">New</button>
             <button className="outer-button" onClick={() => this.handleClickNext()}>Next &#62;</button>
         </div>    
